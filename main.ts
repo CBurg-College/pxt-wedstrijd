@@ -532,18 +532,27 @@ function onShowPlayerColor(code: handler) {
 }
 
 function setPlayer() {
-    ROLE = Role.PlayerGreen
-    if (PxColor.read() == Color.Blue)
+    if (PxColor.read() == Color.Green) {
+        ROLE = Role.PlayerGreen
+        basic.showString("G")
+    }
+    else {
         ROLE = Role.PlayerBlue
+        basic.showString("B")
+    }
 }
 setPlayer()
 
 // Use button A to set the player color manually
 input.onButtonPressed(Button.A, function () {
-    if (ROLE == Role.PlayerGreen)
+    if (ROLE == Role.PlayerGreen) {
         ROLE = Role.PlayerBlue
-    else
+        basic.showString("B")
+    }
+    else {
         ROLE = Role.PlayerGreen
+        basic.showString("G")
+    }
     if (showPlayerColorHandler) showPlayerColorHandler()
 })
 
